@@ -1,0 +1,14 @@
+name: SamsRankSystem
+version: 1.0
+api-version: 1.16
+main: me.Sam.RankSystem.RankSystem
+description: Sams rankup plugin lol
+depend:
+  - Vault
+  - VotingPlugin
+  - PlaceholderAPI
+  - mcMMO
+  - Jobs
+commands:
+  rankup:
+  rankupadmin:
