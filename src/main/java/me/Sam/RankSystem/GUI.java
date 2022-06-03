@@ -24,14 +24,14 @@ public class GUI {
     }
 
     public void createGUI(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 36, Utils.chat("&3Rankup GUI"));
-        ItemStack cyanGlass = new ItemStack(Material.CYAN_STAINED_GLASS_PANE, 1);
+        Inventory inventory = Bukkit.createInventory(null, 36, Utils.chat("{#8bf7f7}/rankup"));
+        ItemStack cyanGlass = new ItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE, 1);
         ItemMeta itemMeta = cyanGlass.getItemMeta();
         itemMeta.setDisplayName(" ");
         cyanGlass.setItemMeta(itemMeta);
         ItemStack back = new ItemStack(Material.ARROW, 1);
         ItemMeta backMeta = back.getItemMeta();
-        backMeta.setDisplayName(Utils.chat("&4&lBack"));
+        backMeta.setDisplayName(Utils.chat("&4&lBack to ranks"));
         back.setItemMeta(backMeta);
         inventory.setItem(0, cyanGlass);
         inventory.setItem(1, cyanGlass);
@@ -46,8 +46,7 @@ public class GUI {
         inventory.setItem(17, cyanGlass);
         inventory.setItem(18, cyanGlass);
         inventory.setItem(19, cyanGlass);
-        inventory.setItem(20, cyanGlass);
-        inventory.setItem(24, cyanGlass);
+        inventory.setItem(22, cyanGlass);
         inventory.setItem(25, cyanGlass);
         inventory.setItem(26, cyanGlass);
         inventory.setItem(27, cyanGlass);
@@ -74,54 +73,55 @@ public class GUI {
                 ItemMeta itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(Utils.chat("&a&lCOMPLETED"));
                 List<String> lore = new ArrayList<>();
-                lore.add(Utils.chat(rank.getChatPrefix()));
-                lore.add(Utils.chat("&3Requirements&7: &aCompleted ✔"));
+                lore.add(Utils.chat("{#8bf7f7}Rank&7: " + rank.getChatPrefix()));
+                lore.add(Utils.chat("{#8bf7f7}Requirements&7: &aCompleted ✔"));
                 lore.add("");
-                lore.add(Utils.chat("&3Rewards&7:"));
+                lore.add(Utils.chat("{#8bf7f7}Rewards&7:"));
                 for (String rewardLine : rank.getRewardList()) {
-                    lore.add(Utils.chat("&3&l✡ &f" + rewardLine));
+                    lore.add(Utils.chat("&b&l◆ &f" + rewardLine));
                 }
                 itemMeta.setLore(lore);
                 itemStack.setItemMeta(itemMeta);
                 break;
             case RANKINPROGRESS:
-                itemStack = new ItemStack(Material.DIAMOND, 1);
+                itemStack = new ItemStack(Material.EMERALD, 1);
                 ItemMeta itemMeta2 = itemStack.getItemMeta();
                 itemMeta2.addEnchant(Enchantment.ARROW_DAMAGE, 1, false);
                 itemMeta2.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta2.setDisplayName(Utils.chat("&e&lIN PROGRESS"));
                 List<String> lore2 = new ArrayList<>();
-                lore2.add(Utils.chat(rank.getChatPrefix()));
                 if (rankManager.canRankup(player)) {
                     lore2.add(Utils.chat("&a&lYou can rankup now!"));
                 }
-                lore2.add(Utils.chat("&3Requirements&7:"));
+                lore2.add(Utils.chat("{#8bf7f7}Rank&7: " + rank.getChatPrefix()));
+                lore2.add(Utils.chat("{#8bf7f7}Requirements&7:"));
                 if (rank.getPlaytimeRequirementDays() != 0)
-                    lore2.add(Utils.chat("&7Time Played: &f" + rank.getPlaytimeRequirementDays() + " &7Day(s) &f" + rank.getPlaytimeRequirementHours() + " &7Hours(s) " + rankManager.isPassedPlaytime(player, rank)));
+                    lore2.add(Utils.chat("&bTime Played: &f" + rank.getPlaytimeRequirementDays() + " &7Day(s) &f" + rank.getPlaytimeRequirementHours() + " &7Hours(s) " + rankManager.isPassedPlaytime(player, rank)));
                 if (rank.getVoteRequirement() != 0)
-                    lore2.add(Utils.chat("&7Votes: &f" + rank.getVoteRequirement() + " " + rankManager.isPassedVotes(player, rank)));
+                    lore2.add(Utils.chat("&bVotes: &f" + rank.getVoteRequirement() + " " + rankManager.isPassedVotes(player, rank)));
 
                 if (rank.getMoneyRequirement() != 0)
-                    lore2.add(Utils.chat("&7Money: &f" + rank.getMoneyRequirement() + " " + rankManager.isPassedBalance(player, rank)));
+                    lore2.add(Utils.chat("&bMoney: &f" + rank.getMoneyRequirement() + " " + rankManager.isPassedBalance(player, rank)));
                 if (rank.getMcmmoRequirement() != 0)
-                    lore2.add(Utils.chat("&7mcMMO Powerlevel: &f" + rank.getMcmmoRequirement() + " " + rankManager.isPassedMcmmo(player, rank)));
+                    lore2.add(Utils.chat("&bmcMMO Powerlevel: &f" + rank.getMcmmoRequirement() + " " + rankManager.isPassedMcmmo(player, rank)));
                 if (rank.getJobsRequirement() != 0)
-                    lore2.add(Utils.chat("&7Jobs Powerlevel: &f" + rank.getJobsRequirement() + " " + rankManager.isPassedJobs(player, rank)));
+                    lore2.add(Utils.chat("&bJobs Powerlevel: &f" + rank.getJobsRequirement() + " " + rankManager.isPassedJobs(player, rank)));
                 if (rank.getEnchantedItemsRequirement() != 0)
-                    lore2.add(Utils.chat("&7Items Enchanted: &f" + rank.getEnchantedItemsRequirement() + " " + rankManager.isPassedItemsEnchanted(player, rank)));
+                    lore2.add(Utils.chat("&bItems Enchanted: &f" + rank.getEnchantedItemsRequirement() + " " + rankManager.isPassedItemsEnchanted(player, rank)));
                 if (rank.getMobsKilledRequirement() != 0)
-                    lore2.add(Utils.chat("&7Monsters Killed: &f" + rank.getMobsKilledRequirement() + " " + rankManager.isPassedMobsKilled(player, rank)));
+                    lore2.add(Utils.chat("&bMonsters Killed: &f" + rank.getMobsKilledRequirement() + " " + rankManager.isPassedMobsKilled(player, rank)));
                 if (rank.getAnimalsBredRequirement() != 0)
-                    lore2.add(Utils.chat("&7Animals Bred: &f" + rank.getAnimalsBredRequirement() + " " + rankManager.isPassedAnimalsBred(player, rank)));
+                    lore2.add(Utils.chat("&bAnimals Bred: &f" + rank.getAnimalsBredRequirement() + " " + rankManager.isPassedAnimalsBred(player, rank)));
                 if (rank.getWinRaidsRequirement() != 0)
-                    lore2.add(Utils.chat("&7Raids Won: &f" + rank.getWinRaidsRequirement() + " " + rankManager.isPassedRaidsWon(player, rank)));
+                    lore2.add(Utils.chat("&bRaids Won: &f" + rank.getWinRaidsRequirement() + " " + rankManager.isPassedRaidsWon(player, rank)));
                 if (rank.getCatchFishRequirement() != 0)
-                    lore2.add(Utils.chat("&7Fish Caught: &f" + rank.getCatchFishRequirement() + " " + rankManager.isPassedFishCaught(player, rank)));
+                    lore2.add(Utils.chat("&bFish Caught: &f" + rank.getCatchFishRequirement() + " " + rankManager.isPassedFishCaught(player, rank)));
                 if (rank.getEnderDragonKilledRequirement() != 0)
-                    lore2.add(Utils.chat("&7EnderDragons Killed: &f" + rank.getEnderDragonKilledRequirement() + " " + rankManager.isPassedEnderdragonsKilled(player, rank)));
-                lore2.add(Utils.chat("&3Rewards&7:"));
+                    lore2.add(Utils.chat("&bEnderDragons Killed: &f" + rank.getEnderDragonKilledRequirement() + " " + rankManager.isPassedEnderdragonsKilled(player, rank)));
+                lore2.add(" ");
+                lore2.add(Utils.chat("{#8bf7f7}Rewards&7:"));
                 for (String rewardLine : rank.getRewardList()) {
-                    lore2.add(Utils.chat("&3&l✡ &f" + rewardLine));
+                    lore2.add(Utils.chat("&b&l◆ &f" + rewardLine));
                 }
                 itemMeta2.setLore(lore2);
                 itemStack.setItemMeta(itemMeta2);
@@ -131,33 +131,34 @@ public class GUI {
                 ItemMeta itemMeta3 = itemStack.getItemMeta();
                 itemMeta3.setDisplayName(Utils.chat("&c&lLOCKED"));
                 List<String> lore3 = new ArrayList<>();
-                lore3.add(Utils.chat(rank.getChatPrefix()));
-                lore3.add(Utils.chat("&3Requirements&7:"));
+                lore3.add(Utils.chat("{#8bf7f7}Rank&7: " + rank.getChatPrefix()));
+                lore3.add(Utils.chat("{#8bf7f7}Requirements&7:"));
                 if (rank.getPlaytimeRequirementDays() != 0)
-                    lore3.add(Utils.chat("&7Time Played: &f" + rank.getPlaytimeRequirementDays() + " &7Day(s) &f" + rank.getPlaytimeRequirementHours() + " &7Hours(s) " + rankManager.isPassedPlaytime(player, rank)));
+                    lore3.add(Utils.chat("&bTime Played: &f" + rank.getPlaytimeRequirementDays() + " &7Day(s) &f" + rank.getPlaytimeRequirementHours() + " &7Hours(s) " + rankManager.isPassedPlaytime(player, rank)));
                 if (rank.getVoteRequirement() != 0)
-                    lore3.add(Utils.chat("&7Votes: &f" + rank.getVoteRequirement() + " " + rankManager.isPassedVotes(player, rank)));
+                    lore3.add(Utils.chat("&bVotes: &f" + rank.getVoteRequirement() + " " + rankManager.isPassedVotes(player, rank)));
                 if (rank.getMoneyRequirement() != 0)
-                    lore3.add(Utils.chat("&7Money: &f" + rank.getMoneyRequirement() + " " + rankManager.isPassedBalance(player, rank)));
+                    lore3.add(Utils.chat("&bMoney: &f" + rank.getMoneyRequirement() + " " + rankManager.isPassedBalance(player, rank)));
                 if (rank.getMcmmoRequirement() != 0)
-                    lore3.add(Utils.chat("&7mcMMO Powerlevel: &f" + rank.getMcmmoRequirement() + " " + rankManager.isPassedMcmmo(player, rank)));
+                    lore3.add(Utils.chat("&bmcMMO Powerlevel: &f" + rank.getMcmmoRequirement() + " " + rankManager.isPassedMcmmo(player, rank)));
                 if (rank.getJobsRequirement() != 0)
-                    lore3.add(Utils.chat("&7Jobs Powerlevel: &f" + rank.getJobsRequirement() + " " + rankManager.isPassedJobs(player, rank)));
+                    lore3.add(Utils.chat("&bJobs Powerlevel: &f" + rank.getJobsRequirement() + " " + rankManager.isPassedJobs(player, rank)));
                 if (rank.getEnchantedItemsRequirement() != 0)
-                    lore3.add(Utils.chat("&7Items Enchanted: &f" + rank.getEnchantedItemsRequirement() + " " + rankManager.isPassedItemsEnchanted(player, rank)));
+                    lore3.add(Utils.chat("&bItems Enchanted: &f" + rank.getEnchantedItemsRequirement() + " " + rankManager.isPassedItemsEnchanted(player, rank)));
                 if (rank.getMobsKilledRequirement() != 0)
-                    lore3.add(Utils.chat("&7Monsters Killed: &f" + rank.getMobsKilledRequirement() + " " + rankManager.isPassedMobsKilled(player, rank)));
+                    lore3.add(Utils.chat("&bMonsters Killed: &f" + rank.getMobsKilledRequirement() + " " + rankManager.isPassedMobsKilled(player, rank)));
                 if (rank.getAnimalsBredRequirement() != 0)
-                    lore3.add(Utils.chat("&7Animals Bred: &f" + rank.getAnimalsBredRequirement() + " " + rankManager.isPassedAnimalsBred(player, rank)));
+                    lore3.add(Utils.chat("&bAnimals Bred: &f" + rank.getAnimalsBredRequirement() + " " + rankManager.isPassedAnimalsBred(player, rank)));
                 if (rank.getWinRaidsRequirement() != 0)
-                    lore3.add(Utils.chat("&7Raids Won: &f" + rank.getWinRaidsRequirement() + " " + rankManager.isPassedRaidsWon(player, rank)));
+                    lore3.add(Utils.chat("&bRaids Won: &f" + rank.getWinRaidsRequirement() + " " + rankManager.isPassedRaidsWon(player, rank)));
                 if (rank.getCatchFishRequirement() != 0)
-                    lore3.add(Utils.chat("&7Fish Caught: &f" + rank.getCatchFishRequirement() + " " + rankManager.isPassedFishCaught(player, rank)));
+                    lore3.add(Utils.chat("&bFish Caught: &f" + rank.getCatchFishRequirement() + " " + rankManager.isPassedFishCaught(player, rank)));
                 if (rank.getEnderDragonKilledRequirement() != 0)
-                    lore3.add(Utils.chat("&7EnderDragons Killed: &f" + rank.getEnderDragonKilledRequirement() + " " + rankManager.isPassedEnderdragonsKilled(player, rank)));
-                lore3.add(Utils.chat("&3Rewards&7:"));
+                    lore3.add(Utils.chat("&bEnderDragons Killed: &f" + rank.getEnderDragonKilledRequirement() + " " + rankManager.isPassedEnderdragonsKilled(player, rank)));
+                lore3.add(" ");
+                lore3.add(Utils.chat("{#8bf7f7}Rewards&7:"));
                 for (String rewardLine : rank.getRewardList()) {
-                    lore3.add(Utils.chat("&3&l✡ &f" + rewardLine));
+                    lore3.add(Utils.chat("&b&l◆ &f" + rewardLine));
                 }
                 itemMeta3.setLore(lore3);
                 itemStack.setItemMeta(itemMeta3);

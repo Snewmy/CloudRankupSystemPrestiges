@@ -1,4 +1,4 @@
-name: SamsRankSystem
+name: CloudRankSystem
 version: 1.0
 api-version: 1.16
 main: me.Sam.RankSystem.RankSystem
@@ -8,7 +8,7 @@ depend:
   - VotingPlugin
   - PlaceholderAPI
   - mcMMO
-  - Jobs
 commands:
   rankup:
   rankupadmin:
+  rankprefix:

@@ -21,7 +21,7 @@ public class RankupAdminCommand implements CommandExecutor {
                     return false;
                 }
                 RankManager rankManager = new RankManager();
-                if (args.length < 2) {
+                if (args.length < 2 && !args[0].equalsIgnoreCase("reload")) {
                     p.sendMessage(Utils.chat("&7/rankupadmin check (playername)"));
                     p.sendMessage(Utils.chat("&7/rankupadmin promote (playername)"));
                     p.sendMessage(Utils.chat("&7/rankupadmin demote (playername)"));

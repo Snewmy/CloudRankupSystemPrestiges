@@ -64,7 +64,7 @@ public class ChatPrefixPlaceholder extends PlaceholderExpansion {
      */
     @Override
     public String getIdentifier(){
-        return "SamsRankSystem";
+        return "CloudRankSystem";
     }
 
     /**
@@ -102,10 +102,19 @@ public class ChatPrefixPlaceholder extends PlaceholderExpansion {
         // %someplugin_placeholder1%
         if(identifier.equals("chatprefix")) {
             if (!RankSystem.playerStatsMap.containsKey(player.getUniqueId())) {
-                return "&8[&7Newbie&8] "; //Return default since they have no rank
+                return Utils.chat("{#7a8282}[Newbie] "); //Return default since they have no rank
             }
             PlayerStats playerStats = RankSystem.playerStatsMap.get(player.getUniqueId());
-            return playerStats.getRank().getChatPrefix();
+            if (!playerStats.isPrefixOn()) {
+                return "";
+            }
+            return Utils.chat(playerStats.getRank().getChatPrefix());
+        } else if(identifier.equals("forcedprefix")) {
+            if (!RankSystem.playerStatsMap.containsKey(player.getUniqueId())) {
+                return Utils.chat("{#7a8282}[Newbie] "); //Return default since they have no rank
+            }
+            PlayerStats playerStats = RankSystem.playerStatsMap.get(player.getUniqueId());
+            return Utils.chat(playerStats.getRank().getChatPrefix());
         }
 
         // We return null if an invalid placeholder (f.e. %someplugin_placeholder3%)
