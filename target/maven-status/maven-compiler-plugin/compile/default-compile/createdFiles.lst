@@ -12,6 +12,7 @@ me\Sam\RankSystem\RankManager.class
 me\Sam\RankSystem\Ranks\Rank2.class
 me\Sam\RankSystem\Events\RankupEvent.class
 me\Sam\RankSystem\Rank.class
+me\Sam\RankSystem\Ranks\Rank11.class
 me\Sam\RankSystem\Ranks\Rank7.class
 me\Sam\RankSystem\Ranks\Rank5.class
 me\Sam\RankSystem\Commands\RankupAdminCommand.class
@@ -19,8 +20,11 @@ me\Sam\RankSystem\GUI.class
 me\Sam\RankSystem\TabCompleters\RankupAdminTab.class
 me\Sam\RankSystem\ChatPrefixPlaceholder.class
 me\Sam\RankSystem\Ranks\Rank9.class
+me\Sam\RankSystem\TabCompleters\RankPrefixTab.class
 me\Sam\RankSystem\Utils.class
 me\Sam\RankSystem\Ranks\Rank3.class
 me\Sam\RankSystem\RankSystem.class
 me\Sam\RankSystem\GUI$1.class
+me\Sam\RankSystem\Commands\RankPrefixCommand.class
+me\Sam\RankSystem\Listeners\JoinListener.class
 me\Sam\RankSystem\Listeners\RankupListener.class

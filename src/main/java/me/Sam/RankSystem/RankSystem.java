@@ -1,10 +1,13 @@
 package me.Sam.RankSystem;
 
+import me.Sam.RankSystem.Commands.RankPrefixCommand;
 import me.Sam.RankSystem.Commands.RankupAdminCommand;
 import me.Sam.RankSystem.Commands.RankupCommand;
 import me.Sam.RankSystem.Listeners.InventoryClick;
+import me.Sam.RankSystem.Listeners.JoinListener;
 import me.Sam.RankSystem.Listeners.RankupListener;
 import me.Sam.RankSystem.Ranks.*;
+import me.Sam.RankSystem.TabCompleters.RankPrefixTab;
 import me.Sam.RankSystem.TabCompleters.RankupAdminTab;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -44,12 +47,16 @@ public class RankSystem extends JavaPlugin {
         Rank rank8 = new Rank8();
         Rank rank9 = new Rank9();
         Rank rank10 = new Rank10();
+        Rank rank11 = new Rank11();
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new RankupListener(), this);
         pm.registerEvents(new InventoryClick(), this);
+        pm.registerEvents(new JoinListener(), this);
         getCommand("rankup").setExecutor(new RankupCommand());
         getCommand("rankupadmin").setExecutor(new RankupAdminCommand());
         getCommand("rankupadmin").setTabCompleter(new RankupAdminTab());
+        getCommand("rankprefix").setExecutor(new RankPrefixCommand());
+        getCommand("rankprefix").setTabCompleter(new RankPrefixTab());
         if (!setupEconomy()) {
             getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
@@ -87,6 +94,11 @@ public class RankSystem extends JavaPlugin {
         for (String uuid : dataSection.getKeys(false)) {
             String rankKey = dataSection.getString(uuid + ".rank");
             PlayerStats playerStats = new PlayerStats(ranks.get(rankKey));
+            if (dataSection.getString(uuid + ".prefixOn") == null) {
+                playerStats.setPrefixOn(true);
+            } else {
+                playerStats.setPrefixOn(dataSection.getBoolean(uuid + ".prefixOn"));
+            }
             playerStatsMap.put(UUID.fromString(uuid), playerStats);
         }
     }
@@ -96,6 +108,7 @@ public class RankSystem extends JavaPlugin {
         for (Map.Entry<UUID, PlayerStats> entry : playerStatsMap.entrySet()) {
             dataSection.set(entry.getKey().toString() + ".rank", entry.getValue().getRank().getKey());
             dataSection.set(entry.getKey().toString() + ".rankName", entry.getValue().getRank().getName());
+            dataSection.set(entry.getKey().toString() + ".prefixOn", entry.getValue().isPrefixOn());
         }
         try {
             data.save(dataFile);

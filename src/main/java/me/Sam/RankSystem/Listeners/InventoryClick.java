@@ -15,7 +15,7 @@ public class InventoryClick implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (event.getView().getTitle().equalsIgnoreCase(Utils.chat("&3Rankup GUI"))) {
+        if (event.getView().getTitle().equalsIgnoreCase(Utils.chat("{#8bf7f7}/rankup"))) {
             event.setCancelled(true);
             Player player = (Player) event.getWhoClicked();
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta() || !event.getCurrentItem().getItemMeta().hasDisplayName()) {
@@ -41,7 +41,7 @@ public class InventoryClick implements Listener {
                 gui.createGUI(player);
             } else if (itemMeta.getDisplayName().equalsIgnoreCase(Utils.chat("&c&lLOCKED"))) {
                 player.sendMessage(Utils.chat("&cYou cannot unlock this rank yet!"));
-            } else if (itemMeta.getDisplayName().equalsIgnoreCase(Utils.chat("&4&lBack"))) {
+            } else if (itemMeta.getDisplayName().equalsIgnoreCase(Utils.chat("&4&lBack to ranks"))) {
                 Bukkit.dispatchCommand(player, "ranks");
             }
         }

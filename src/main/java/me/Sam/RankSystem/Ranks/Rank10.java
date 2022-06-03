@@ -5,10 +5,7 @@ import me.Sam.RankSystem.Rank;
 public class Rank10 extends Rank {
 
     public Rank10() {
-        super("Rank10", "Diamond", "&8[&b&lDiamond&8] ", 9, true);
-        this.setMoneyRequirement(35000);
-        this.setMcmmoRequirement(300);
-        this.setJobsRequirement(115);
-        this.setEnderDragonKilledRequirement(35);
+        super("Rank10", "Storm", "{#ffb133}[Storm] ", 9, false);
+        this.setVoteRequirement(150);
     }
 }

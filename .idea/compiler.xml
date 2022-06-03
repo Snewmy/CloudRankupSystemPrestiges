@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SamsRankSystem" />
+        <module name="CloudRankSystem" />
+        <module name="CloudRankupSystem" />
       </profile>
     </annotationProcessing>
   </component>
