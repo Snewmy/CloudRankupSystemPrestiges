@@ -19,6 +19,7 @@ public class GUI {
 
     RankManager rankManager;
 
+    //tesdt
     public GUI() {
         this.rankManager = new RankManager();
     }
