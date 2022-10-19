@@ -1,11 +1,10 @@
 package me.Sam.RankSystem;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.bukkit.configuration.file.FileConfiguration;
 
 public abstract class Rank {
-
     private String key;
     private String name;
     private String chatPrefix;
@@ -45,96 +44,101 @@ public abstract class Rank {
         this.enderDragonKilledRequirement = 0;
         this.key = key;
         FileConfiguration config = RankSystem.instance.getConfig();
+        ArrayList rewardCommands;
         if (config.getStringList(key + ".RewardList") == null) {
-            List<String> rewardList = new ArrayList<>();
-            config.set(name + ".RewardList", rewardList);
+            rewardCommands = new ArrayList();
+            config.set(name + ".RewardList", rewardCommands);
             RankSystem.instance.saveConfig();
         }
+
         if (config.getStringList(key + ".RewardCommands") == null) {
-            List<String> rewardCommands = new ArrayList<>();
+            rewardCommands = new ArrayList();
             config.set(name + ".RewardCommands", rewardCommands);
             RankSystem.instance.saveConfig();
         }
+
         this.rewardList = config.getStringList(key + ".RewardList");
         this.rewardCommands = config.getStringList(key + ".RewardCommands");
+        this.setVoteRequirement(config.getInt(".Requirements." + key + ".Votes"));
+        this.setMoneyRequirement(config.getInt(".Requirements." + key + ".Money"));
         RankSystem.instance.saveConfig();
         RankSystem.ranks.put(key, this);
     }
 
     public boolean isLastRank() {
-        return lastRank;
+        return this.lastRank;
     }
 
     public int getMoneyRequirement() {
-        return moneyRequirement;
+        return this.moneyRequirement;
     }
 
     public int getPlaytimeRequirementDays() {
-        return playtimeRequirementDays;
+        return this.playtimeRequirementDays;
     }
 
     public int getPlaytimeRequirementHours() {
-        return playtimeRequirementHours;
+        return this.playtimeRequirementHours;
     }
 
     public int getPosition() {
-        return position;
+        return this.position;
     }
 
     public int getVoteRequirement() {
-        return voteRequirement;
+        return this.voteRequirement;
     }
 
     public List<String> getRewardCommands() {
-        return rewardCommands;
+        return this.rewardCommands;
     }
 
     public List<String> getRewardList() {
-        return rewardList;
+        return this.rewardList;
     }
 
     public String getChatPrefix() {
-        return chatPrefix;
+        return this.chatPrefix;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getKey() {
-        return key;
+        return this.key;
     }
 
     public int getAnimalsBredRequirement() {
-        return animalsBredRequirement;
+        return this.animalsBredRequirement;
     }
 
     public int getCatchFishRequirement() {
-        return catchFishRequirement;
+        return this.catchFishRequirement;
     }
 
     public int getEnchantedItemsRequirement() {
-        return enchantedItemsRequirement;
+        return this.enchantedItemsRequirement;
     }
 
     public int getEnderDragonKilledRequirement() {
-        return enderDragonKilledRequirement;
+        return this.enderDragonKilledRequirement;
     }
 
     public int getJobsRequirement() {
-        return jobsRequirement;
+        return this.jobsRequirement;
     }
 
     public int getMcmmoRequirement() {
-        return mcmmoRequirement;
+        return this.mcmmoRequirement;
     }
 
     public int getMobsKilledRequirement() {
-        return mobsKilledRequirement;
+        return this.mobsKilledRequirement;
     }
 
     public int getWinRaidsRequirement() {
-        return winRaidsRequirement;
+        return this.winRaidsRequirement;
     }
 
     public void setAnimalsBredRequirement(int animalsBredRequirement) {

@@ -4,4 +4,7 @@ public enum ButtonType {
     RANKCOMPLETED,
     RANKINPROGRESS,
     RANKLOCKED;
+
+    private ButtonType() {
+    }
 }

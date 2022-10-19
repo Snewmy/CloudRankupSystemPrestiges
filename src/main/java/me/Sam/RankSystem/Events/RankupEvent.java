@@ -4,10 +4,8 @@ import me.Sam.RankSystem.Rank;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.NotNull;
 
 public class RankupEvent extends Event {
-
     public static final HandlerList HANDLERS = new HandlerList();
     private Player player;
     private Rank rank;
@@ -17,7 +15,6 @@ public class RankupEvent extends Event {
         this.rank = rank;
     }
 
-    @Override
     public HandlerList getHandlers() {
         return HANDLERS;
     }
@@ -27,10 +24,10 @@ public class RankupEvent extends Event {
     }
 
     public Player getPlayer() {
-        return player;
+        return this.player;
     }
 
     public Rank getRank() {
-        return rank;
+        return this.rank;
     }
 }

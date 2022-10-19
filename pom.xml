@@ -46,21 +46,21 @@
             <artifactId>votingPlugin</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>C:/Users/snewm/Downloads/VotingPlugin (11).jar</systemPath>
+            <systemPath>B:/snewm/Downloads/VotingPlugin.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>mcmmo</groupId>
             <artifactId>mcmmo</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>C:/Users/snewm/IdeaProjects/mcMMO/target/mcMMO.jar</systemPath>
+            <systemPath>B:/snewm/Downloads/mcMMO.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>jobs</groupId>
-            <artifactId>jobs</artifactId>
+            <groupId>shopguiplus</groupId>
+            <artifactId>shopguiplus</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>C:/Users/snewm/Downloads/Jobs5.0.0.1 (1).jar</systemPath>
+            <systemPath>B:/snewm/Downloads/ShopGUIPlus-1.80.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
