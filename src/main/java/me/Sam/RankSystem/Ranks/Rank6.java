@@ -5,7 +5,7 @@ import me.Sam.RankSystem.Rank;
 public class Rank6 extends Rank {
 
     public Rank6() {
-        super("Rank6", "Whirlwind", "{#24beed}[Whirlwind] ", 5, false);
+        super("Rank6", "Whirlwind", "{#24beed}[Whirlwind] ", 6, false);
         this.setVoteRequirement(90);
     }
 }

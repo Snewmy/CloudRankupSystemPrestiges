@@ -8,6 +8,7 @@ depend:
   - VotingPlugin
   - PlaceholderAPI
   - mcMMO
+  - ShopGUIPlus
 commands:
   rankup:
   rankupadmin:
